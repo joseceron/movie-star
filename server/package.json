@@ -9,7 +9,10 @@
     "start-console-app": "nodemon ./src/infrastructure/driving-adapters/console/console.ts",
     "start-console-dynamo-app": "nodemon ./src/infrastructure/driving-adapters/console/console-dynamo.ts",
     "start-rest-app": "nodemon ./src/infrastructure/driving-adapters/api-rest/start.ts",
-    "start-app": "nodemon ./src/infrastructure/driving-adapters/start.ts"
+    "start-app": "nodemon ./src/infrastructure/driving-adapters/start.ts",
+
+    "start": "node ./src/infrastructure/driving-adapters/api-rest/start.ts",
+    "cluster": "pm2 start ./src/infrastructure/driving-adapters/api-rest/start.ts -i max"
   },
   "keywords": [],
   "author": "",
