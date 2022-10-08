@@ -1,1 +1,1 @@
-export { default as MovieShowcaseIndex } from "./MovieShowcaseIndex.vue"
+export { default as MovieShowcaseIndex } from "./MovieShowCaseIndex.vue"

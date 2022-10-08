@@ -1,8 +1,8 @@
 export default {
-  user(state) {
+  user(state: any) {
     return state.user
   },
-  isAuthenticated(state) {
+  isAuthenticated(state: any) {
     return !!state.user
   }
 }

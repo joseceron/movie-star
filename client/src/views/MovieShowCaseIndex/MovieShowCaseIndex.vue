@@ -12,7 +12,7 @@
           lg="3"
           md="4"
           sm="6"
-          v-for="(movie, index) in catalogItem.items"
+          v-for="movie in catalogItem.items"
           v-bind:key="movie.id"
         >
           <b-card bg-variant="dark" text-variant="white">
@@ -45,20 +45,32 @@
     </div>
 
     <section>
-      <b-modal ref="my-modal" hide-footer :title="movieSelected.title">
-        <div class="d-block text-center">
-          <div v-if="movieSelected.castKeys.length > 0">
-            <b-row v-for="(item, i) in movieSelected.castKeys" v-bind:key="i">
-              <b-col style="text-align: left">
-                <strong>{{ item }}:</strong>
-                {{ movieSelected.castAndCrew[`${item}`] }}
+      <b-modal
+        :title="movieSelected.title"
+        v-model="showModalDetail"
+        no-close-on-backdrop
+        hide-header-close
+        size="md"
+      >
+        <div v-if="movieSelected.castKeys.length > 0">
+          <b-row v-for="(item, i) in movieSelected.castKeys" v-bind:key="i">
+            <b-col style="text-align: left">
+              <strong>{{ item }}:</strong>
+              <!-- {{ movieSelected.castAndCrew }} -->
+            </b-col>
+          </b-row>
+        </div>
+        <template #modal-footer>
+          <div class="w-100">
+            <b-row>
+              <b-col lg="6">
+                <b-button size="md" variant="warning" @click="closeModal()">
+                  Aceptar
+                </b-button>
               </b-col>
             </b-row>
           </div>
-        </div>
-        <b-button class="mt-3" variant="info" block @click="hideModal"
-          >Close</b-button
-        >
+        </template>
       </b-modal>
     </section>
   </div>
@@ -68,6 +80,25 @@
 import Vue from "vue";
 
 import { movieApi } from "@/api/movie-api";
+import type { Movie } from "@/models/movie";
+import type { MovieSelected } from "@/models/movieSelected";
+
+const initialMovieSelected: MovieSelected = {
+  title: "",
+  castAndCrew: {},
+  castKeys: [],
+  castValues: [],
+};
+
+interface CatalogItem {
+  id: string,
+  name: string,
+  items: Movie[],
+  lasEvaluatedKey: object
+}
+
+const catalog: CatalogItem[] = []
+
 
 export default Vue.extend({
   name: "MovieShowCaseIndex",
@@ -77,16 +108,13 @@ export default Vue.extend({
       isFetching: false,
       catalog: [],
       error: null,
-      movieSelected: {
-        title: "",
-        castAndCrew: null,
-        castKeys: [],
-      },
+      movieSelected: initialMovieSelected,
+      showModalDetail: false,
     };
   },
   created() {
     if (!this.$store.getters.isAuthenticated) {
-      this.$router.replace('/pages/login')
+      this.$router.replace("/pages/login");
     } else {
       this.fetchMovies();
     }
@@ -94,34 +122,35 @@ export default Vue.extend({
   methods: {
     fetchMovies() {
       this.isFetching = true;
-      const token = this.$store.getters.user.token
+      const token = this.$store.getters.user.token;
       movieApi
         .fetchPaginated(token)
-        .then((movies) => (this.catalog = movies))
-        .catch((e) => console.error)
-        .finally(() => (this.isFetching = false));
+        .then((movies) => {
+          // this.catalog = movies;
+
+          this.catalog = movies
+
+          this.isFetching = false;
+        })
+        .catch((e) => {
+          console.error;
+          this.isFetching = false;
+        });
     },
     imgUrl() {
       const randomNumber = Math.floor(Math.random() * 20) + 1;
       return `https://source.unsplash.com/random?sig=${randomNumber}`;
     },
-    showModal(movie) {
-      this.movieSelected.title = movie.title;
+    showModal(movie: Movie) {
+      this.movieSelected["title"] = movie.title;
       this.movieSelected.castAndCrew = movie.castAndCrew;
 
       this.movieSelected.castKeys = Object.keys(movie.castAndCrew);
 
-      if (this.movieSelected.castKeys.length) {
-        this.movieSelected.castKeys.map((item) => {
-          this.movieSelected.castAndCrew[`${item}`] =
-            this.movieSelected.castAndCrew[`${item}`].join(", ");
-        });
-      }
-
-      this.$refs["my-modal"].show();
+      this.showModalDetail = true;
     },
-    hideModal() {
-      this.$refs["my-modal"].hide();
+    closeModal() {
+      this.showModalDetail = false;
     },
   },
 });

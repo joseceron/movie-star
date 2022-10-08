@@ -5,7 +5,7 @@ import store from '../store'
 import HomeView from '../views/HomeView.vue'
 
 import TheContainer from '../containers/TheContainer.vue'
-import { MovieShowcaseIndex } from '../views/MovieShowCaseIndex'
+import { MovieShowcaseIndex } from '../views/MovieShowCaseIndex/index'
 
 import { UserAuth } from '../pages/auth/index'
 
@@ -53,15 +53,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+  if (to.meta!.requiresAuth && !store.getters.isAuthenticated) {
     next({path: '/pages/login', replace: true})
-  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+  } else if (to.meta!.requiresUnauth && store.getters.isAuthenticated) {
     next({path: '/', replace: true})
   } else {
     next()
   }
-
-  
 })
 
 export default router

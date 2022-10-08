@@ -1,6 +1,6 @@
 <script lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-export default {
+import Vue from "vue";
+export default Vue.extend({
   name: "App",
   data() {
     return {}
@@ -8,7 +8,7 @@ export default {
   created() {
     this.$store.dispatch("tryLogin")
   }
-}
+});
 </script>
 
 <template>

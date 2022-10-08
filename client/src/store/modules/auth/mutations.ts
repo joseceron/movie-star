@@ -1,5 +1,5 @@
 export default {
-  setUser(state, user) {
+  setUser(state: any, user: any) {
     state.user = user
   }
 }
