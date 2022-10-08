@@ -1,0 +1,32 @@
+[
+  {
+      "id": 1,
+      "name": "Action",
+      "items": [
+          {
+              "id": "a0bba829-6c84-40c3-84df-a6d16ad5e6a2",
+              "title": "Fast & Furious 1",
+              "year": "2001",
+              "rating": 5,
+              "castAndCrew": {
+                  "actors": [
+                      "messi",
+                      "ronaldo",
+                      "halan"
+                  ],
+                  "director": [
+                      "jose cerón",
+                      "migue cerón"
+                  ]
+              },
+              "genre": {
+                  "id": 1
+              }
+          }
+      ],
+      "lastEvaluatedKey": {
+          "movie_pk": "08f974c2-face-4c9c-9484-6043725dc718",
+          "year_sk": "2009"
+      }
+  }
+]

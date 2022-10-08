@@ -1,0 +1,1 @@
+export { default as MovieShowcaseIndex } from "./MovieShowcaseIndex.vue"
