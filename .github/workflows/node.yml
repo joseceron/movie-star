@@ -1,9 +1,9 @@
 name: MOVIE-STAR Project CI
 on:
   push:
-    branches: [ feat/ci-cd ]
+    branches: [ develop ]
   pull_request:
-    branches: [ feat/ci-cd ]
+    branches: [ develop ]
 jobs:
   build:
     env:
