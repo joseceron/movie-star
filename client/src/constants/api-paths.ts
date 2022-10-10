@@ -1,4 +1,4 @@
-const URL = 'http://localhost:2426'
+const URL = 'http://localhost:8000'
 const API_VERSION = 'v1'
 
 export const API_PATHS = {
