@@ -50,7 +50,6 @@ describe('Test POST /v1/movies', () => {
 
     const body = response.body
     movieId = body.id
-    console.log(body)
     expect(Object.keys(body).length).toBe(6)
     expect(body).toMatchObject(completeMovieData)
   })
@@ -100,13 +99,13 @@ describe('Test PUT /movies', () => {
       .expect(200)
 
     const body = response.body
-    console.log(body)
     expect(Object.keys(body).length).toBe(6)
   })
 })
 
 describe('Test DELETE /v1/movies', () => {
   test('It should respond with 204', async () => {
+    console.log('movieId: ', movieId)
     const response = await request(app)
       .delete(`/v1/movies/${movieId}`)
       .set('Authorization', `Bearer ${token}`)
