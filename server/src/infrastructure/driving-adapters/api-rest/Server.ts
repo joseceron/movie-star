@@ -1,6 +1,7 @@
 import express from 'express'
 import * as http from 'http'
 import routes from './routes'
+import * as path from 'path'
 
 export class Server {
   private readonly _port: string
@@ -19,6 +20,8 @@ export class Server {
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization')
       next()
     })
+    const staticPath = path.join(__dirname, '..', '..', '..', '..', '..', 'client', 'dist') 
+    this._app.use(express.static(staticPath))
     this._app.use(routes)
   }
 

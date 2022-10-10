@@ -56,7 +56,7 @@
           <b-row v-for="(item, i) in movieSelected.castKeys" v-bind:key="i">
             <b-col style="text-align: left">
               <strong>{{ item }}:</strong>
-              <!-- {{ movieSelected.castAndCrew }} -->
+              {{ movieSelected.castAndCrew[`${item}`].join(', ') }}
             </b-col>
           </b-row>
         </div>

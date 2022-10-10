@@ -4,12 +4,18 @@ import movieRoutes from './movie.routes'
 import userRoutes from './user.routes'
 import userSessionRoutes from './userSession.routes'
 import { Exception } from '../../../../domain/exceptions/Exception'
+import * as path from 'path'
 
 const route = Router()
 
 route.use('/v1/movies', movieRoutes)
 route.use('/v1/users', userRoutes)
 route.use('/v1/user-session', userSessionRoutes)
+
+route.get('/', (req, res) => {
+  const indexPath = path.join(__dirname, '..', '..', '..', '..', '..', 'dist', 'index.html') 
+  res.sendFile(indexPath)
+})
 
 route.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Exception) {
