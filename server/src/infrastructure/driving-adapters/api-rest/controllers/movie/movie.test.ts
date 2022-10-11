@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { Server } from '../../Server'
 
-const PORT = process.env.PORT ?? '2426'
+const PORT = process.env.PORT ?? '8000'
 const server = new Server(PORT)
 const app = server._app
 

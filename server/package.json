@@ -11,7 +11,7 @@
     "start-rest-app": "nodemon ./src/infrastructure/driving-adapters/api-rest/start.ts",
     "start-app": "nodemon ./src/infrastructure/driving-adapters/start.ts",
 
-    "start": "node ./src/infrastructure/driving-adapters/api-rest/start.ts",
+    "start": "ts-node ./src/infrastructure/driving-adapters/api-rest/start.ts",
     "cluster": "pm2 start ./src/infrastructure/driving-adapters/api-rest/start.ts -i max"
   },
   "keywords": [],
