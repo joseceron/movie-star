@@ -5,15 +5,15 @@
 This project allows a logged user to interact with a catalog of movies. The client and server components were made using vuejs@2 and NodeJS. 
   
 ### Table of Contents
-- [Getting Started](#gettingstarted)
-- [Run Locally](#runner)
+- [Getting Started](#getting-started)
+- [Run Locally](#run-locally)
 - [Docker](#docker)
-- [Running the Tests](#test)
+- [Running the Tests](#running-tests)
 - 
-- [About this project](#usageserver)
-- [Tools employed](#tools)
+- [About this project](#about-this-project)
+- [Tools Employed](#tools-employed)
 
-## Getting Started
+## Getting-started
   #### Clone repo Server
 
 ``` bash
@@ -31,7 +31,7 @@ $ cd movie-star
 ``` bash
 $ npm install
 ```
-## Run Locally
+## Run-locally
 
 #### Running the Project
 
@@ -56,7 +56,7 @@ $ docker build -t movie-star .
 $ docker run -it -p 8000:8000 movie-star
  ```
 
-## Running the Tests
+## Running-tests
 
  To run any automated tests, run `npm test`. This will:
 
@@ -65,11 +65,11 @@ $ docker run -it -p 8000:8000 movie-star
 $ npm test --prefix server
 ```
 
-## About this project
+## About-this-project
 
 Hi! This **Movie-star** project is made in order to show my skills along the use of different technologies building a fullstack project.
 
-## Tools employed
+## Tools-employed
 
 ### Tools & extensions
 - VS code, Postman, github.
